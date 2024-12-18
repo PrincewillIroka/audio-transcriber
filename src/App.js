@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [isCapturing, setIsCapturing] = useState(false);
+
+  const startCapturing = () => {
+    alert("Capturing started!"); // Alert for starting capture
+    setIsCapturing(true);
+  };
+
+  const stopCapturing = () => {
+    alert("Capturing stopped!"); // Alert for stopping capture
+    setIsCapturing(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="container">
+      <h5 className="app-title">Meeting Integration</h5>
+      <form className="capturing-form">
+        <button
+          type="button"
+          onClick={startCapturing}
+          disabled={isCapturing}
+          className="button"
         >
-          Learn React
-        </a>
-      </header>
+          Start Capturing
+        </button>
+        <button
+          type="button"
+          onClick={stopCapturing}
+          disabled={!isCapturing}
+          className="button"
+        >
+          Stop Capturing
+        </button>
+      </form>
     </div>
   );
 }
