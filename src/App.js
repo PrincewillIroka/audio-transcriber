@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import "./App.css";
-import MediaCaptureManager from "./MediaCaptureManager";
+import MediaCaptureManager from "./lib/MediaCaptureManager";
 
 function App() {
   const [isCapturing, setIsCapturing] = useState(false);
@@ -9,8 +9,8 @@ function App() {
   async function handeMediaCapture(value) {
     try {
       if (value === "start") {
-        captureManagerRef.current = new MediaCaptureManager();
         setIsCapturing(true);
+        captureManagerRef.current = new MediaCaptureManager();
         await captureManagerRef.current.startCapture();
       } else if (value === "stop") {
         setIsCapturing(false);
@@ -42,6 +42,7 @@ function App() {
           Stop Capturing
         </button>
       </form>
+      <div id="transcriptDisplay"></div>
     </div>
   );
 }
