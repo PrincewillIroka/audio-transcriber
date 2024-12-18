@@ -1,11 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  max-width: fit-content;
-  padding: 10px 15px;
+  align-items: center;
+  padding: 15px 0;
+  width: 180px;
+  background-color: #ffffff;
 }
 
-h5 {
+h4 {
   margin: 0;
 }
 
@@ -17,17 +19,17 @@ h5 {
 .capturing-form {
   background-color: #ffffff;
   display: grid;
-  grid-template-columns: 120px;
+  grid-template-columns: auto;
   gap: 10px;
-  width: 120px;
 }
 
 .button {
   background-color: #1f2937;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .button:disabled {

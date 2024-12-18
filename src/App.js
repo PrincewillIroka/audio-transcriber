@@ -1,26 +1,33 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
+import MediaCaptureManager from "./MediaCaptureManager";
 
 function App() {
   const [isCapturing, setIsCapturing] = useState(false);
+  const captureManagerRef = useRef();
 
-  const startCapturing = () => {
-    alert("Capturing started!"); // Alert for starting capture
-    setIsCapturing(true);
-  };
-
-  const stopCapturing = () => {
-    alert("Capturing stopped!"); // Alert for stopping capture
-    setIsCapturing(false);
-  };
+  async function handeMediaCapture(value) {
+    try {
+      if (value === "start") {
+        captureManagerRef.current = new MediaCaptureManager();
+        setIsCapturing(true);
+        await captureManagerRef.current.startCapture();
+      } else if (value === "stop") {
+        setIsCapturing(false);
+        captureManagerRef.current.stopCapture();
+      }
+    } catch (error) {
+      console.error("Capture error:", error);
+    }
+  }
 
   return (
     <div className="container">
-      <h5 className="app-title">Meeting Integration</h5>
+      <h4 className="app-title">Meeting Integration</h4>
       <form className="capturing-form">
         <button
           type="button"
-          onClick={startCapturing}
+          onClick={() => handeMediaCapture("start")}
           disabled={isCapturing}
           className="button"
         >
@@ -28,7 +35,7 @@ function App() {
         </button>
         <button
           type="button"
-          onClick={stopCapturing}
+          onClick={() => handeMediaCapture("stop")}
           disabled={!isCapturing}
           className="button"
         >
