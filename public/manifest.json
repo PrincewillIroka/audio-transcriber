@@ -8,8 +8,12 @@
     "default_popup": "index.html",
     "default_title": "Meeting Integration"
   },
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./contentScript.js"]
+    }
+  ],
+  "background": { "service_worker": "./backgroundScript.js" },
+  "permissions": ["storage"]
 }

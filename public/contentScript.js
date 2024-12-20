@@ -1,3 +1,49 @@
+class CaptureAudio {
+  constructor() {
+    this.requestUserPermission();
+    this.handleEvents();
+  }
+
+  requestUserPermission() {
+    try {
+      navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: false,
+      });
+
+      // chrome.storage.local.set({ audioStream });
+      // chrome.storage.sync.set({ audioStream });
+    } catch (error) {
+      console.error("Get user permission failed:", error);
+    }
+  }
+
+  handleEvents() {
+    chrome.runtime.onMessage.addListener(
+      async (request, sender, sendResponse) => {
+        if (["START_CAPTURE", "STOP_CAPTURE"].includes(request.action)) {
+          await navigator.mediaDevices
+            .getUserMedia({
+              audio: true,
+              video: false,
+            })
+            .then((audioStream) => {
+              this.audioProcessor = new AudioProcessor(audioStream);
+              if (request.action === "START_CAPTURE") {
+                this.audioProcessor.startRecording();
+              } else {
+                this.audioProcessor.stopRecording();
+              }
+            });
+        }
+      }
+    );
+  }
+}
+
+//Run class constructor
+new CaptureAudio();
+
 class AudioProcessor {
   constructor(audioStream) {
     this.audioStream = audioStream;
@@ -8,11 +54,10 @@ class AudioProcessor {
   }
 
   initSpeechRecognition() {
-    const recognition = window.webkitSpeechRecognition
-      ? new window.webkitSpeechRecognition()
-      : null;
+    const recognition =
+      window.SpeechRecognition || new window.webkitSpeechRecognition() || null;
     if (!recognition) {
-      console.error("Web Speech API not supported");
+      alert("Web Speech API not supported");
       return null;
     }
 
@@ -89,10 +134,7 @@ class AudioProcessor {
   }
 
   displayTranscript(transcript) {
-    const transcriptElement = document.getElementById("transcriptDisplay");
-    if (transcriptElement) {
-      transcriptElement.textContent = transcript;
-    }
+    chrome.runtime.sendMessage({ transcript });
   }
 
   analyzeTranscriptKeywords(transcript) {
@@ -121,7 +163,7 @@ class AudioProcessor {
     // const audioUrl = URL.createObjectURL(audioBlob);
 
     try {
-      // Send to backend for advanced transcription
+      // Send to backend API for advanced transcription
       const formData = new FormData();
       formData.append("audio", audioBlob, "recording.webm");
 
@@ -137,5 +179,3 @@ class AudioProcessor {
     }
   }
 }
-
-export default AudioProcessor;
