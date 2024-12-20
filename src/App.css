@@ -36,3 +36,12 @@ h4 {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+#transcriptDisplay {
+  display: flex;
+  padding: 10px;
+  height: 50px;
+  overflow-y: auto;
+  background-color: #000000;
+  color: #ffffff;
+}
