@@ -1,6 +1,6 @@
 # Meeting Integration App
 
-![App screenshot](https://imgur.com/a/iIJeNyw.png)
+![App screenshot](https://imgur.com/dvjeAHJ.png)
 
 ## Project setup
 
