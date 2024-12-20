@@ -24,8 +24,7 @@ function App() {
         sendResponse
       ) {
         if (request.transcript) {
-          const value = transcript + " " + request.transcript;
-          setTranscript(value);
+          setTranscript(request.transcript);
         }
       });
     }
@@ -62,7 +61,7 @@ function App() {
 
   return (
     <div className="container">
-      <h4 className="app-title">Meeting Integration</h4>
+      <h3 className="app-title">Meeting Integration</h3>
       <form className="capturing-form">
         <button
           type="button"
@@ -81,7 +80,12 @@ function App() {
           Stop Capturing
         </button>
       </form>
-      <div id="transcriptDisplay">{transcript}</div>
+      {transcript && (
+        <div className="transcript-display">
+          <span className="transcript-title">Transcript below:</span>
+          <p className="transcript-text">{transcript}</p>
+        </div>
+      )}
     </div>
   );
 }
