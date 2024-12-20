@@ -1,8 +1,10 @@
 # Meeting Integration App
 
+![App screenshot](https://imgur.com/a/iIJeNyw.png)
+
 ## Project setup
 
-In the project directory, you can run:
+In the project directory:
 
 Run `yarn` to install app dependencies
 
