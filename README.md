@@ -1,6 +1,6 @@
 # Audio Transcriber App
 
-![App screenshot](https://imgur.com/dvjeAHJ.png)
+![App screenshot](https://imgur.com/Pgff7cj.png)
 
 ## Project setup
 
