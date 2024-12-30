@@ -1,5 +1,5 @@
 {
-  "name": "meeting-integration",
+  "name": "audio-transcriber",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

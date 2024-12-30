@@ -28,7 +28,7 @@ function App() {
         }
       });
     }
-  }, [transcript]);
+  }, []);
 
   useEffect(() => {
     handleMessages();
@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div className="container">
-      <h3 className="app-title">Meeting Integration</h3>
+      <h3 className="app-title">Audio Transcriber</h3>
       <form className="capturing-form">
         <button
           type="button"

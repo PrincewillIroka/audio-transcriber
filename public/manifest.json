@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
-  "short_name": "Meeting Integration",
-  "name": "Meeting Integration",
+  "short_name": "Audio Transcriber",
+  "name": "Audio Transcriber",
   "version": "1.0",
-  "description": "An extension to be integrated in a meeting app.",
+  "description": "An extension that records audio and transcribes it to text.",
   "action": {
     "default_popup": "index.html",
-    "default_title": "Meeting Integration"
+    "default_title": "Audio Transcriber"
   },
   "content_scripts": [
     {

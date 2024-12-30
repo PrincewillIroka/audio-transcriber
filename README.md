@@ -1,4 +1,4 @@
-# Meeting Integration App
+# Audio Transcriber App
 
 ![App screenshot](https://imgur.com/dvjeAHJ.png)
 
