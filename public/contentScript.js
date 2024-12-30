@@ -10,9 +10,6 @@ class CaptureAudio {
         audio: true,
         video: false,
       });
-
-      // chrome.storage.local.set({ audioStream });
-      // chrome.storage.sync.set({ audioStream });
     } catch (error) {
       console.error("Get user permission failed:", error);
     }
@@ -123,7 +120,6 @@ class AudioProcessor {
     const processedTranscript = this.cleanTranscript(transcript);
 
     this.displayTranscript(processedTranscript);
-    this.analyzeTranscriptKeywords(processedTranscript);
   }
 
   cleanTranscript(transcript) {
@@ -137,30 +133,8 @@ class AudioProcessor {
     chrome.runtime.sendMessage({ transcript });
   }
 
-  analyzeTranscriptKeywords(transcript) {
-    const keywords = {
-      action: ["develop", "do", "make", "create", "build"],
-      question: ["what", "why", "how", "when"],
-      emotion: ["happy", "sad", "angry", "excited"],
-    };
-
-    const detectedCategories = Object.entries(keywords).reduce(
-      (acc, [category, words]) => {
-        const matches = words.filter((word) => transcript.includes(word));
-        if (matches.length) {
-          acc[category] = matches;
-        }
-        return acc;
-      },
-      {}
-    );
-
-    console.log("Detected keyword categories:", detectedCategories);
-  }
-
   async processAudioChunks() {
     const audioBlob = new Blob(this.audioChunks, { type: "audio/webm" });
-    // const audioUrl = URL.createObjectURL(audioBlob);
 
     try {
       // Send to backend API for advanced transcription
