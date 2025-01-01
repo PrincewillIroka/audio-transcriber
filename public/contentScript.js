@@ -99,8 +99,6 @@ class AudioProcessor {
       }
     };
 
-    // this.mediaRecorder.onstop = this.processAudioChunks.bind(this);
-
     this.mediaRecorder.start();
     this.isRecording = true;
   }
@@ -131,25 +129,5 @@ class AudioProcessor {
 
   displayTranscript(transcript) {
     chrome.runtime.sendMessage({ transcript });
-  }
-
-  async processAudioChunks() {
-    const audioBlob = new Blob(this.audioChunks, { type: "audio/webm" });
-
-    try {
-      // Send to backend API for advanced transcription
-      const formData = new FormData();
-      formData.append("audio", audioBlob, "recording.webm");
-
-      const response = await fetch("/transcribe", {
-        method: "POST",
-        body: formData,
-      });
-
-      const transcriptionResult = await response.json();
-      console.log("Backend Transcription:", transcriptionResult);
-    } catch (error) {
-      console.error("Transcription processing error:", error);
-    }
   }
 }

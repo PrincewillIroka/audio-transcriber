@@ -10,10 +10,8 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["./contentScript.js"]
+      "matches": ["*://*/*"],
+      "js": ["contentScript.js"]
     }
-  ],
-  "background": { "service_worker": "./backgroundScript.js" },
-  "permissions": ["storage"]
+  ]
 }
