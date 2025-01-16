@@ -2,6 +2,9 @@
 
 ![App screenshot](https://imgur.com/Pgff7cj.png)
 
+## Chrome Web store
+[Audio Transcriber extension on Chrome Web store](https://chromewebstore.google.com/detail/audio-transcriber/clfjbbncnehenakmpackcaemjlbacbgd)
+
 ## Project setup
 
 In the project directory:
